@@ -1,0 +1,18 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    You are randomly assigned to a new other participant.
+{% endblock %}
+
+{% block content %}
+   <h3>Instructions:</h3>
+<p>You are driving a car. You have to decide whether you drive on the right or on the left side of the road.<br>
+The other participant also drives on the road, in the opposite direction, and is moving towards you. You can see his/her headlights coming onto you. S/he has to make the same decision.<br>
+If one of you decides to drive on his right side of the road and the other decides to drive on her left side of the road, then you will crash, and you will lose {{poss_payoff}} E$ (so your payoff will be {{poss_payoff}} E$).<br>
+If both of you decide to drive on your right side of the road, or both of you decide to drive on your left side of the road, then you pass each other, and you neither win nor lose anything, yielding a payoff of 0 E$.</p>
+ {% formfield player.turn label="Please make your choice." %}
+
+    {% next_button %}
+
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    Results
+{% endblock %}
+
+{% block content %}
+You are bidder number {{player.id_in_group}}.<br><br>
+Your certificate value is {{player.cert_price}}.<br><br>
+
+    {% if group.mult_win %}
+    There were more than one bidder who accepted a price of {{group.current_price}} E$, of which Bidder {{group.winner}}
+    was selected as the winner. <br>
+    {% else %}
+    {% if player.winner %}You{% else %}Bidder {{group.winner}}{% endif %} won the auction at a price of {{group.current_price}} E$.
+    {% endif %}
+    {% if not player.winner %} You are not the winner.
+    Thus, your payoff is {{player.payoff}}.
+    {% else %}
+    You are the winner, thus your payoff is {{player.cert_price}} minus {{group.current_price}} which is {{player.payoff}}.
+    {% endif %}
+
+    {% next_button %}
+{% endblock %}
+
+

@@ -1,0 +1,14 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+   Round {{subsession.round_number}} out of {{Constants.num_rounds}}.
+{% endblock %}
+
+{% block content %}
+<p>You are randomly assigned to a new other participant.<br>
+In this round you are the {{player.role}} fan.</p>
+{% formfield player.choice label="Please select your choice of where to go tonight" %}
+    {% next_button %}
+
+{% endblock %}

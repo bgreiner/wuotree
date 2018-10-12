@@ -1,0 +1,49 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+        Round  {{ subsession.round_number }} of {{num_rounds}}
+{% endblock %}
+
+{% block content %}
+
+<p>The player has decided not to enter the market.</p>
+
+    {% next_button %}
+{% if subsession.round_number != 1 %}
+
+<h7>Here you see your history which was displayed to the entrant before she made her decision.</h7>
+
+
+<table class="table">
+<tr>
+<th>Round</th>
+<th>Entrant's choice</th>
+    <th>Incumbent's choice</th>
+</tr>
+<tr>{% for p in player.in_previous_rounds %}
+<td>{{ p.round_number }}</td>
+<td>
+{% if p.other_player.enter == "Enter the market" %}Entered the market{% else %}Did not enter the market{% endif %}
+</td>
+<td>
+    {% if p.price_war and p.other_player.enter == "Enter the market" %}
+Price war{% elif p.other_player.enter == "Enter the market" %}No price war
+{% else %}Other player did not enter the market{% endif %}
+
+</td>
+</tr>
+{% empty %}
+    <p>Nothing to show.</p>
+{% endfor %}
+</table>
+{% else %}
+<h7>No past actions to show.</h7>
+{% endif %}
+<script type="text/javascript">
+function nth(n){return["st","nd","rd"][((n+90)%100-10)%10-1]||"th"}
+document.getElementById('ordinal').innerText=nth({{subsession.round_number}})
+</script>
+{% endblock %}
+
+

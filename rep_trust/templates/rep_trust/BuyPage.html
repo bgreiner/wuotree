@@ -1,0 +1,17 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    Round  {{ subsession.round_number }} of {{Constants.num_rounds}}
+{% endblock %}
+
+{% block content %}
+{% if subsession.round_number == 1 %}
+<p>You were randomly matched with a participant</p>
+{% else %}
+<p>You were randomly matched with a new participant.</p>
+{% endif %}
+<p>In this round you are a {% if player.role == 'Seller' %}seller{% else %}buyer.{% endif %}</p>
+{% formfield group.buy label="Would you like to buy?" %}
+    {% next_button %}
+{% endblock %}

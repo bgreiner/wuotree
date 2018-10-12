@@ -1,0 +1,19 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+   Round {{subsession.round_number}} out of {{Constants.num_rounds}}.
+{% endblock %}
+
+{% block content %}
+<p>In this round you were the {{player.role}}, the other participant was the {{player.other_player.role}}.<br>
+{% if player.role == 'Keeper' %}
+    You chose to dive {{player.choice}}, the other participant chose to shoot {{player.other_player.choice}}.<br>
+{% else %}
+    You chose to shoot {{player.choice}}, the other participant chose to dive {{player.other_player.choice}}.<br>
+{% endif %}
+Thus, your payoff in this round is {{player.payoff}}</p>
+    {% next_button %}
+{% endblock %}
+
+

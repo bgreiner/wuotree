@@ -1,0 +1,27 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    Introduction
+{% endblock %}
+
+{% block content %}
+
+<p>In this experiment you are a representative of a
+    retailer who sells a single product to consumers.
+    You have to make inventory decisions for this product.<br><br>
+
+The cost at which you buy the product is {{player.cost}} E$ per unit.<br><br>
+
+The price at which you are selling the product is 12 E$ per unit.<br><br>
+
+In every round you have to decide how many units of the product you
+    want to order (O) from the wholesaler. After you decided how many units to order, consumer demand (D) will be randomly generated from a discrete and uniform distribution between 0 and 300 (which means that each number between 0 and 300 is equally likely to be the demand in any particular round). At the end of each round, you will find out the quantity demanded for that round
+    and your profit (P) will be calculated based on your order decision and
+    the consumer demand generated. Then the next round will start. <br><br>
+
+The experiment has 20 rounds.<p>
+<p>{% next_button %}</p>
+
+
+{% endblock %}

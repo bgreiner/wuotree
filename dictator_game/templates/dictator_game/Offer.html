@@ -1,0 +1,19 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}Your Decision{% endblock %}
+
+{% block content %}
+<p>
+You were randomly assigned the role of person A.<br><br>
+    You were randomly matched with a participant in the role of person B.<br><br>
+    You have to decide how much of the 100 E$ you give to person B, and how much to take for yourself.
+
+</p>
+
+{% formfield group.given label="How much would you like to offer to Person B?"%}
+
+{% next_button %}
+
+
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+   Round {{subsession.round_number}} out of {{Constants.num_rounds}}.
+{% endblock %}
+
+{% block content %}
+<p>
+You have been randomly matched with a participant and your randomly assigned role is {{player.role}}. <br>
+
+The computer randomly determined the skill level of the employee, either LOW (with 60% probability) or HIGH (with 40% probability).<br>
+The worker decided to {% if player.other_player.master == 'No' %} not{% endif %} do a Master's degree.
+    {% formfield player.wage_offered label="Please decide whether to pay a high wage (40) or a low wage (20) to the employee." %}
+
+</p>
+    {% next_button %}
+
+{% endblock %}

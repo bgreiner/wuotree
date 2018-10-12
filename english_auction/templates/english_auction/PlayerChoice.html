@@ -1,0 +1,19 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    Auction
+{% endblock %}
+
+{% block content %}
+   <p> You are bidder number {{ player.id_in_group }}. <br>
+       Your value for the certificate is {{ player.cert_price }}. <br>
+Current highest bid is {{ group.highest_bid }} E${% for p in group.get_players %}{% if p.bid == group.highest_bid and p.id_in_group != player.id_in_group %} from bidder number {{ p.id_in_group }}
+       {% endif %}{% endfor %}.
+   </p>
+<p>Your bid must be either 0,
+    indicating that you do not want to bid, or it must be positive and higher than the highest standing bid displayed above.</p>
+{% formfield player.bid label="What is your bid?" %}
+{% next_button %}
+
+{% endblock %}

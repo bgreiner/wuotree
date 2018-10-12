@@ -1,0 +1,19 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+ Round  {{ subsession.round_number }} of {{Constants.num_rounds}}
+{% endblock %}
+
+{% block content %}
+{% if player.role == 'Producer 2' %}
+    <p>The other producer has chosen to produce {% for p in group.get_players %}
+	{% if p.role == 'Producer 1' %} {{p.number_of_bottles_redecide}} {% endif %} {%endfor%} bottles of water.
+        <br>
+{% else %}
+        <p>You have chosen to produce {{player.number_of_bottles_redecide}} bottles of water.
+    Now, while the other producer is making her decision, you have the chance to reconsider this choice.</p>
+{% endif %}
+{% formfield player.number_of_bottles label="Please choose the number of bottles you want to produce:" %}
+    {% next_button %}
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+   Round {{subsession.round_number}} out of {{Constants.num_rounds}}.
+{% endblock %}
+
+{% block content %}
+In this round, your role is the one of the {{player.role}}.<br>
+    {% if player.role == 'Keeper' %}
+    The Striker sent you the following note: <br>I am going to shoot <b>{{player.other_player.stated_choice}}.</b> <br>
+    {% formfield player.choice label="Please select your choice of where to dive in this round" %}
+    {% next_button %}
+    {% else%}
+    You sent you the following note: I am going to shoot {{player.stated_choice}}. <br>
+    {% formfield player.choice label="Please select your choice of where to shoot this round" %}
+    {% next_button %}
+    {% endif %}
+    
+
+
+{% endblock %}

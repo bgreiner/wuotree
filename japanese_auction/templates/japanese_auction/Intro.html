@@ -1,0 +1,20 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    Auction about to begin...
+{% endblock %}
+
+{% block content %}
+    You were randomly matched with a group of 4 bidders.
+    <br>
+    You are bidder number {{player.id_in_group}}.
+    <br>
+    Your randomly drawn value for the certificate is {{player.cert_price}}.
+    <br>
+    Click next to start the auction.
+    <br>
+    {% next_button %}
+{% endblock %}
+
+

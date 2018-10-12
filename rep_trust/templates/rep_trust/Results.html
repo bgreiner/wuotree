@@ -1,0 +1,32 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    Round  {{ subsession.round_number }} of {{Constants.num_rounds}}
+{% endblock %}
+
+{% block content %}
+<p>This was round {{ subsession.round_number }} and you were the {% if player.role == 'Seller' %}seller{% else%}buyer{% endif %}.</p>
+{% if player.role == 'Buyer' %}
+    You chose
+{% else %}
+    The buyer chose
+{% endif %}
+{% if not group.buy %}
+    not to buy this round . 
+    {% if player.role != 'Buyer' %}
+        You had no choice to make.
+    {% endif %}
+{% else %}
+    to buy in this round. 
+    {% if player.role == 'Buyer' %}
+        The seller
+    {% else %}
+        You
+    {% endif %} chose to
+    {% if not group.produce %}NOT{% endif %} ship.
+{% endif %}
+<p>Thus your profit this round is {{player.payoff}} and the seller's profit is {{player.other_player.payoff}}.
+    {% next_button %}
+{% endblock %}
+

@@ -1,0 +1,44 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    Round  {{ subsession.round_number }} of {{Constants.num_rounds}}
+{% endblock %}
+
+{% block content %}
+{% if subsession.round_number == 1 %}
+<p>You were randomly matched with a participant</p>
+{% else %}
+<p>You were randomly matched with a new participant.</p>
+{% endif %}
+<p>In this round you are a {{player.role}}.</p>
+{% formfield group.buy label="Would you like to buy?" %}
+    {% next_button %}
+
+
+{% if subsession.round_number > 2 %}
+<h4>Here you can see the shipping decisions <strong>the seller</strong> made in previous rounds.</h4>
+<table class="table">
+<tr>
+<th>Round</th>
+<th>Buyer's Choice</th>
+<th>Seller's Choice</th>
+</tr>
+{% for p in player.other_player.in_previous_rounds %}
+<tr>
+    {% if p.role == 'Seller' %}
+<td>{{ p.round_number }}</td>
+<td>
+{% if p.group.buy %}Buy{% else %}Not Buy{% endif %}
+</td>
+<td>
+{% if p.group.produce and p.group.buy %}Ship{% elif p.group.buy %}Not Ship{% else %}-{% endif %}
+</td>{% endif %}
+</tr>
+
+{% endfor %}
+</table>
+{% else %}
+<h4>No history to show.</h4>
+{% endif %}
+{% endblock %}

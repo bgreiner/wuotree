@@ -1,0 +1,43 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    Results
+{% endblock %}
+
+{% block content %}
+    <p>You are the producer who chose {% if player.role == 'Producer 1' %} first{% else %} second{% endif %},
+        while the other producer decided {% if player.role != 'Producer 1' %} first{% else %} second{% endif %}.
+    <br>
+    {% if player.role == 'Producer 1' %} You {% else %} The other producer {% endif %} chose first to produce a number of
+        {% for p in group.get_players %}
+        {% if p.role == 'Producer 1' %}
+        {{p.number_of_bottles_redecide}}.
+        {% endif%}{% endfor %}
+        Then {% if player.role != 'Producer 1' %} you {% else %} the other producer {% endif %}
+        observed that decision and chose to produce a number of
+        {% for p in group.get_players %}
+        {% if p.role == 'Producer 2' %}
+        {{p.number_of_bottles}} bottles.
+        {% endif%}{% endfor %} <br>
+        Meanwhile {% if player.role == 'Producer 1' %} you {% else %} the other producer {% endif %}
+        had the chance to reconsider and decided to produce of
+        {% for p in group.get_players %}
+        {% if p.role == 'Producer 1' %}
+        {{p.number_of_bottles}} bottles.
+        {% endif %}{% endfor %}
+
+    <br>
+    Thus, the price in the market is {{group.bottle_price}}.
+
+    Your profit in this round is {{player.payoff}}.<br>The other producer's profit in this round is
+    {% for p in group.get_players %}
+        {% if player.role == 'Producer 1' %}
+            {% if p.role == 'Producer 2' %} {{p.payoff}}. {% endif %}
+        {% else %}
+            {% if p.role == 'Producer 1' %} {{p.payoff}}. {% endif %}
+        {%endif%}
+    {%endfor%}
+    </p>
+    {% next_button %}
+{% endblock %}

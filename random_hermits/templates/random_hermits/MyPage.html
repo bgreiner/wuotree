@@ -1,0 +1,27 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+   Round {{subsession.round_number}} out of {{Constants.num_rounds}}.
+{% endblock %}
+
+{% block content %}
+{% if player.id_in_group == 1 %}
+In this round, you are the first participant. You prefer visiting the {{player.pref}}.<br>
+As first participant, your role is always the one of a {{player.role}}.<br><br>
+
+The second participant prefers visiting the Lake.<br>
+The second participant will be randomly assigned the role of a Hermit or a Socializer.
+{% else %}
+
+In this round, you are the second participant. You prefer visiting the {{player.pref}}.<br>
+You were randomly assigned the role of a {{player.role}}.<br><br>
+
+The first participant prefers visiting the Forest.<br>
+The first participant has always the role of a Socializer.<br>
+
+{% endif %}
+{% formfield player.choice label="Please select your choice of where to go today" %}
+    {% next_button %}
+
+{% endblock %}

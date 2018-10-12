@@ -1,0 +1,15 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+        Round  {{ subsession.round_number }} of {{Constants.num_rounds}}
+{% endblock %}
+
+{% block content %}
+<p>You were randomly assigned to a pair of participants.</p>
+
+<p>You were randomly assigned the role of {% if player.id_in_group == 1 %} A.{% else %} B.{% endif %}</p>
+    {% next_button %}
+{% endblock %}
+
+

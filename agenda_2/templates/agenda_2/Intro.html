@@ -1,0 +1,19 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+   Round {{subsession.round_number}} out of {{Constants.num_rounds}}.
+{% endblock %}
+
+{% block content %}
+<p>
+    You have been randomly assigned the role of Director {{player.role}}.
+    <br>
+    You are {% if not player.committee %}not{% endif %} the chairperson.
+    <br>
+
+</p>
+
+    {% next_button %}
+
+{% endblock %}

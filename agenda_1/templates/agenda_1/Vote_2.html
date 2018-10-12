@@ -1,0 +1,18 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+   Second round of voting.
+{% endblock %}
+
+{% block content %}
+<p>
+        You will now cast your ballot in the second round of voting. The vote will take place between
+     strategy {{vote_choice_1}} and {{vote_choice_2}}.
+     {% formfield player.vote_2 label="Please cast your final vote." %}
+
+</p>
+
+    {% next_button %}
+
+{% endblock %}

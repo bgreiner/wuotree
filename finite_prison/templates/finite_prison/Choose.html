@@ -1,0 +1,16 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+Round  {{ subsession.round_number }} of {{Constants.num_rounds}}.
+{% endblock %}
+
+{% block content %}
+
+<p>{% if subsession.round_number == 1 %} You were randomly assigned to another participant. Each of you represents a bolt producer. You will stay with the same participant for all rounds.
+{% else %} You were assigned to the same  participant as in the previous round. Each of you represents a bolt-producer.
+    {% endif %}<br><br></p>
+{% formfield player.bolt_price label="Please choose a price for your bolts in E$" %}
+    {% next_button %}
+
+{% endblock %}

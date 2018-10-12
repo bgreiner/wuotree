@@ -1,0 +1,15 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    You are randomly assigned to a new other participant.
+{% endblock %}
+
+{% block content %}
+   <h3>Instructions:</h3> <h2>Choose one of the following numbers: 7, 100, 13, 261, 99, 666.</h2> <br>
+<p>If you and the other participant choose the same number, both of you will receive {{poss_payoff}} E$. If not, both of you will receive 0 E$.</p>
+ {% formfield player.number label="Please make your choice." %}
+
+    {% next_button %}
+
+{% endblock %}

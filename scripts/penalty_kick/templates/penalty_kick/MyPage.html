@@ -1,0 +1,14 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+   Round {{subsession.round_number}} out of {{Constants.num_rounds}}.
+{% endblock %}
+
+{% block content %}
+In this round, your role is the one of the {{player.role}} and you prefer visiting the {{player.pref}}.<br>
+
+{% formfield player.choice label="Please select your choice of where to go today" %}
+    {% next_button %}
+
+{% endblock %}

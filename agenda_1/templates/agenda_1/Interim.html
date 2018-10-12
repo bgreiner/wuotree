@@ -1,0 +1,30 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    First vote results.
+{% endblock %}
+
+{% block content %}
+<p>
+    {% if player.role == "A" %}
+    You were director A and voted for {{player.vote_1}}. Director B voted for strategy {{player.dir_b_choice}} and
+     Director C voted for strategy {{player.dir_c_choice}}.
+    {% endif %}
+    {% if player.role == "B" %}
+    You were director B and voted for {{player.vote_1}}. Director A voted for strategy {{player.dir_a_choice}} and
+     Director C voted for strategy {{player.dir_c_choice}}.
+    {% endif %}
+    {% if player.role == "C" %}
+    You were director C and voted for {{player.vote_1}}. Director A voted for strategy {{player.dir_a_choice}} and
+     Director B voted for strategy {{player.dir_b_choice}}.
+    {% endif %}
+    <br><br>
+    Thus <b>{{player.round_1_winner}} won the first round of voting. The final vote will now take place between {{vote_choice_1}}
+ and {{vote_choice_2}}.</b>
+
+</p>
+    {% next_button %}
+{% endblock %}
+
+

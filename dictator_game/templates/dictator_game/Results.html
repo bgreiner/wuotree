@@ -1,0 +1,22 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    Results
+{% endblock %}
+
+{% block content %}
+    <p>
+
+        {% if player.id_in_group == 1 %}
+            You were person A in this experiment. <br><br>You decided to give {{group.given}} to person B and
+        kept <strong>{{ group.kept }}</strong> for yourself.
+        {% else %}
+            You were person B in this experiment. <br><br>Person A decided to give you {{group.given}}
+        and keep {{ group.kept }}, so
+            you got <strong>{{ offer }}</strong>.
+        {% endif %}
+
+        {% next_button %}
+    </p>
+{% endblock %}

@@ -1,0 +1,34 @@
+{% load otree staticfiles %}
+
+<div class="instructions well well-lg" style="">
+
+    <h3 class="panel-sub-heading">
+        Instructions - Experiment 2
+    </h3>
+<p>This experiment goes over 10 rounds. In each round, participants are randomly matched to groups of five. That means that in each round you will interact within a different group of participants.</p>
+
+<p>In each round every of the five participants represents a souvenir-selling company. All companies are selling their Vienna Opera souvenir on the same market right before the Opera. These souvenirs are
+very homogenous, i.e. they look exactly the same, and have all exactly the same quality. Also, all companies have the same production costs for one souvenir, EUR 0,26. Each company can produce up to
+600 souvenirs per round. All companies could sell as many souvenirs as they like to an overseas company, which, however, would only pay EUR 0,26 per piece. </p>
+
+<p>In each round you make a decision about the price at which you want to offer your souvenir. At the same time the four other participants in your market also make a price offer. Each company can ask
+for a price of either EUR 0,30, EUR 0,40, EUR 0,60, EUR 0,80, or EUR 1,00. </p>
+
+<p>The tourists, the consumers in the market, are simulated by the computer. The tourists observe the price offers, and then make a decision
+whether they want to buy the souvenir, and if they want to buy, from which company. Specifically, there are 600 tourists who come by in each round. 120 tourists would buy a souvenir if the price were
+EUR 0,30 or less. A further 120 tourists would buy if the price were EUR 0,40 or less. Another 120 tourists would buy up to a price of EUR 0,60, but not if the price is higher. A further 120 tourists would
+buy if the price were EUR 0,80 or less. And the last bunch of tourists would buy up to a price of EUR 1,00. No tourist would buy if the price is larger than EUR 1,00.</p>
+
+<p>When the tourists come to the market and observe the prices, all of them of course will go to the outlet of the company with the lowest price of all, and buy there. If there are more than one company
+with the lowest price, tourists will split equally among the companies with the lowest price and buy there. Thus, the companies with the lowest price will share a demand from 600 tourists if this
+lowest price is EUR 0,30, and a demand from 480, 360, 240, and 120 tourists if this lowest price is EUR 0,40, EUR 0,60, EUR 0,80, and EUR 1,00, respectively. In sum, your profit in each round will be:<p>
+
+<p><center>P*N – 0.26*N = (P – 0.26)*N</center></p>
+
+<p>with P the price you named, and N the number of tourists who will buy at your outlet for this price. (As you can sell all of your unsold products to the overseas company with zero profit, they don’t play a
+role here).</p>
+
+<p>Any questions?</p>
+
+</div>
+

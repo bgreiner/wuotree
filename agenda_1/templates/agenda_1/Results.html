@@ -1,0 +1,32 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    Results
+{% endblock %}
+
+{% block content %}
+<p>
+
+    {% if player.role == "A" %}
+    You were director A and voted for {{player.vote_2}}. Director B voted for strategy {{player.dir_b_choice_2}} and
+     Director C voted for strategy {{player.dir_c_choice_2}}.
+    {% endif %}
+    {% if player.role == "B" %}
+    You were director B and voted for {{player.vote_2}}. Director A voted for strategy {{player.dir_a_choice_2}} and
+     Director C voted for strategy {{player.dir_c_choice_2}}.
+    {% endif %}
+    {% if player.role == "C" %}
+    You were director C and voted for {{player.vote_2}}. Director A voted for strategy {{player.dir_a_choice_2}} and
+     Director B voted for strategy {{player.dir_b_choice_2}}.
+    {% endif %}<br>
+    <b>Strategy {{player.winner}} won the vote and will be implemented by the company.</b>
+    <br>
+    <br>
+    Thus, your payoff is {{player.payoff}}.
+</p>
+
+    {% next_button %}
+{% endblock %}
+
+

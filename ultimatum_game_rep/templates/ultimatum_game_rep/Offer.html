@@ -1,0 +1,21 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}Round  {{ subsession.round_number }} of {{Constants.num_rounds}}.{% endblock %}
+
+{% block content %}
+<p>
+
+    You have to decide how much of the 10 E$ you give to person B, and how much to take for yourself.<br><br>
+    Person B will then decide whether to accept or to reject your offer.
+
+</p>
+
+{% formfield group.amount_offered label="How much would you like to offer to Person B?"%}
+
+<p></p>
+
+{% next_button %}
+
+
+{% endblock %}

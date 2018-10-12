@@ -1,0 +1,21 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    Round  {{ subsession.round_number }} of {{Constants.num_rounds}}
+{% endblock %}
+
+{% block content %}
+    <p>
+
+        {% if player.id_in_group == 1 %}
+            You were randomly assigned the role of person A for all rounds of this experiment. <br><br>
+        You were randomly matched with a participant in the role of person B. This person will be the same participant in all rounds.
+        {% else %}
+            You were randomly assigned the role of person B for all rounds of this experiment. <br><br>
+        You were randomly matched with a participant in the role of person A. This person will be the same participant in all rounds.
+        {% endif %}
+
+        {% next_button %}
+    </p>
+{% endblock %}

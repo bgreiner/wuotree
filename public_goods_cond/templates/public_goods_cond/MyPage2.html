@@ -1,0 +1,28 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+   Round {{subsession.round_number}} out of {{Constants.num_rounds}}.
+{% endblock %}
+
+{% block content %}
+Now please choose how much of your E$10 transport budget you contribute
+to the tram line in case the other three mayors have on average contributed:
+
+    {% next_button %}
+<table class="table">
+        <tr>
+            <th>Amount</th>
+            <th>Your contribution</th>
+        </tr>
+        {% for field in form %}
+            <tr>
+                <td>E${{forloop.counter}}</td>
+                <td>
+                    {{field}}
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+
+{% endblock %}

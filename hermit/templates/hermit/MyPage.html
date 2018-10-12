@@ -1,0 +1,18 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+   Round {{subsession.round_number}} out of {{Constants.num_rounds}}.
+{% endblock %}
+
+{% block content %}
+In this round, your role is the one of the {{player.role}}.<br>
+    {% if player.role == 'Socialiser' %}
+    The Hermit sent you the following note: <br>I am going to the <b>{{player.other_player.stated_choice}}.<b></b> <br>
+    {% else%}
+    You sent you the following note: I am going to the {{player.stated_choice}}.
+    {% endif %}
+{% formfield player.choice label="Please select your choice of where to go today" %}
+    {% next_button %}
+
+{% endblock %}

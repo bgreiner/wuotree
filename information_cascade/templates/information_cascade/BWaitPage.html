@@ -1,0 +1,9 @@
+{% extends 'otree/WaitPage.html' %}
+{% load staticfiles otree %}
+{% block title %}{{ title_text }}{% endblock %}
+{% block content %}
+    {{ body_text }}
+    <p>
+        You are player {{player.id_in_group}}. Currently player {{group.current_turn}} is choosing.
+    </p>
+{% endblock %}

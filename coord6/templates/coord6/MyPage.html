@@ -1,0 +1,15 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    You are randomly assigned to a new other participant.
+{% endblock %}
+
+{% block content %}
+   <h3>Instructions:</h3> <h2>Name tails or heads.</h2> <br>
+<p>If you and the other participant name the same, both of you will receive E$10. If not, both of you will receive E$0.</p>
+ {% formfield player.coin label="Please make your choice." %}
+
+    {% next_button %}
+
+{% endblock %}

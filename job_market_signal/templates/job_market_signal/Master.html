@@ -1,0 +1,19 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+   Round {{subsession.round_number}} out of {{Constants.num_rounds}}.
+{% endblock %}
+
+{% block content %}
+<p>
+You have been randomly matched with a participant and your randomly assigned role is {{player.role}}. <br>
+
+ The computer determined randomly that you are a {{player.skill_level}} skill employee.<br>
+    Doing a Master's degree will cost you {% if player.skill_level == 'High' %} E$10.{% else %} E$25.<br>{% endif %}
+     {% formfield player.master label="Will you do a Master's degree?" %}
+
+</p>
+    {% next_button %}
+
+{% endblock %}

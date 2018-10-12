@@ -1,0 +1,22 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+   Round {{subsession.round_number}} out of {{Constants.num_rounds}}.
+{% endblock %}
+
+{% block content %}
+ <p>In this round you were the {{player.role}}.
+     {% if player.role == 'Firm' %}
+     The employee's skill level was {{player.other_player.skill_level}}. <br>
+     You chose to offer a wage of {{player.wage_offered}} E$.<br>
+     Thus, the employee's wage this round was {{player.other_player.payoff}} and your income this round was {{player.payoff}}.<br>
+     {% else %}
+     You skill level was {{player.skill_level}}.<br>
+     You were offered a wage of {{player.other_player.wage_offered}} E$.<br>
+     Thus, your wage this round was {{player.payoff}} and the Firm's income this round was {{player.other_player.payoff}}.<br>
+     {% endif %}
+    </p>{% next_button %}
+{% endblock %}
+
+

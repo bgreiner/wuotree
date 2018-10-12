@@ -1,0 +1,17 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+      Round  {{ subsession.round_number }} / {{Constants.num_rounds}} - Decide
+{% endblock %}
+
+{% block content %}
+
+    {% formfield player.price label="Please choose a price for your souvenirs:" %}
+    You are the {{ player.order }} to decide. <br>
+	{% for p in group.get_players %}
+	{% if p.has_chosen %} <strong> The {{p.order}} player chose a price of {{p.price}}</strong><br>{% endif %}
+	{%endfor%}
+
+{% next_button %}
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    Choose punishment
+{% endblock %}
+
+{% block content %}
+<p1>In this round you are mayor number {{player.id_in_group}}.</p1> <br><br>
+{% for p in group.get_players %}
+{% if p.id_in_group == player.id_in_group %} You have {% else %}Mayor number {{p.id_in_group}} has {% endif %}
+contributed {{p.contribution}} to the tram line and {{p.kept}} to their own streets.<br>
+{% endfor %}
+
+<br><br>
+<p1>Overall, the 4 suburbs have contributed {{group.total_contribution}} to the tram line.<br>
+Thus, your suburb's benefit this round is {{player.payoff}}.<br>
+
+You can now choose to spend between 0 E$ and 5 E$ on the reduction of each
+    of the other mayors' benefits. Each invested E$ will reduce the targeted mayor's benefit by 3 E$.</p1><br>
+
+{% for p in group.get_players %}
+{% if p.id_in_group == player.id_in_group %}
+{% elif p.id_in_group == 1 %}
+{% formfield player.punishment_1 label="How much would you like to spend on mayor 1?" %}
+{% elif p.id_in_group == 2 %}
+{% formfield player.punishment_2 label="How much would you like to spend on mayor 2?" %}
+{% elif p.id_in_group == 3 %}
+{% formfield player.punishment_3 label="How much would you like to spend on mayor 3?" %}
+{% elif p.id_in_group == 4 %}
+{% formfield player.punishment_4 label="How much would you like to spend on mayor 4?" %}
+{% endif %}
+{% endfor %}<br>
+    {% next_button %}
+{% endblock %}
+
+

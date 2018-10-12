@@ -1,0 +1,16 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    Round  {{ subsession.round_number }} of {{Constants.num_rounds}}
+{% endblock %}
+
+{% block content %}
+<p>You were randomly assigned the role of person {{player.role}} in this round.</p>
+<P>You were also {% if subsession.round_number != 1 %}newly{% endif %} randomly matched with two participants in the roles of persons
+    {% if player.role == 'A' %} B and C.
+    {% elif player.role == 'B' %} A and C.
+    {% elif player.role == 'C' %} A and B.
+    {% endif %}
+    {% next_button %}
+{% endblock %}

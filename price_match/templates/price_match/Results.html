@@ -1,0 +1,30 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+{% block title %}Results{% endblock %}
+{% block content %}
+
+<p>You have {% if not player.price_matching %} not {% endif  %}chosen a price matching policy and have chosen a sale price of {{player.price_before_match}}.
+</p>
+<p>{{price_choice_1}} {% if price_choice_1 == 1 %}participant in your group has{% else %}
+    participants in your group have{% endif %} offered a price of {{price_1}}.</p>
+<p>{{price_choice_2}} {% if price_choice_2 == 1 %}participant in your group has{% else %}
+    participants in your group have{% endif %} offered a price of {{price_2}}.</p>
+<p>{{price_choice_3}} {% if price_choice_3 == 1 %}participant in your group has{% else %}
+    participants in your group have{% endif %} offered a price of {{price_3}}.</p>
+<p>{{price_choice_4}} {% if price_choice_4 == 1 %}participant in your group has{% else %}
+    participants in your group have{% endif %} offered a price of {{price_4}}.</p>
+<p>{{price_choice_5}} {% if price_choice_5 == 1 %}participant in your group has{% else %}
+    participants in your group have{% endif %} offered a price of {{price_5}}.</p>
+<p>All together {{group.price_matching_count}} participants chose a "price matching" policy.</p>
+<p>Thus, {{winning_demand}} tourists want to buy at a price of {{winning_price}}.</p>
+<p></p>
+<p>You sell {{my_demand}} at a price of {{my_price}}.</p>
+{% if my_demand > 0 %}
+    <p>As your cost is {{my_cost}} per piece, your profit in this round is {{my_profit}}.</p>
+{% else %}
+    <p>Thus, your profit in this round is 0,00.</p>
+{% endif %}
+<p></p>
+<p>{% next_button %}</p>
+
+{% endblock %}

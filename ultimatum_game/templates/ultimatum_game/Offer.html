@@ -1,0 +1,20 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}Your Role and Offer{% endblock %}
+
+{% block content %}
+<p>
+You were randomly assigned the role of person A.<br><br>
+    You were randomly matched with a participant in the role of person B.<br><br>
+    You have to decide how much of the 100 E$ you give to person B, and how much to take for yourself.<br><br>
+    Person B will then decide whether to accept or to reject your offer.
+
+</p>
+
+{% formfield group.amount_offered label="How much would you like to offer to Person B?"%}
+
+{% next_button %}
+
+
+{% endblock %}

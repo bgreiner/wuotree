@@ -1,0 +1,22 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+   Round {{subsession.round_number}} out of {{Constants.num_rounds}}.
+{% endblock %}
+
+{% block content %}
+<p>
+You have been randomly matched with a participant and your randomly assigned role is {{player.role}}. <br>
+{% if player.role == 'Firm' %}
+The computer randomly determined the skill level of the employee, either LOW (with 60% probability) or HIGH (with 40% probability).<br>
+
+    {% formfield player.wage_offered label="Please decide whether to pay a high wage (40) or a low wage (20) to the employee." %}
+    {% else %}
+ The computer determined randomly that you are a {{player.skill_level}} skill employee.<br>
+    You have no choices to make. Please click next.
+{% endif %}
+</p>
+    {% next_button %}
+
+{% endblock %}

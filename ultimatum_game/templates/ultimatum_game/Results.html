@@ -1,0 +1,24 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    Results
+{% endblock %}
+
+{% block content %}
+    <p>
+        {% if player.id_in_group == 1 %}
+            You were person A in this experiment. <br><br>You made the following offer {{group.amount_offered}} to person B. They
+        {% if group.offer_accepted %} accepted {% else %}
+         rejected{% endif %} this offer.
+
+        {% else %}
+            You were person B in this experiment. <br><br>Person A decided to offer you
+        {{group.amount_offered}}.
+        You {% if group.offer_accepted %} accepted{% else %}
+         rejected{% endif %} this offer.
+        {% endif %}<br><br>
+        Thus, your income for this experiment is <strong>{{player.payoff}}</strong>.
+        {% next_button %}
+    </p>
+{% endblock %}

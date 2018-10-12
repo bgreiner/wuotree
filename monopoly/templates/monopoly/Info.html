@@ -1,0 +1,24 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    Round  {{ subsession.round_number }} of {{Constants.num_rounds}}
+{% endblock %}
+
+{% block content %}
+{% if subsession.round_number == 1 %}
+<p>You were assigned to a group of 6 participants, one seller and 5 potential buyers.</p>
+{% else %}
+<p>The groups were randomly rematched. You were assigned to a new group of 6 participants, one seller and 5 potential buyers.</p>
+
+{% endif %}
+{% if player.role == 'Seller' %} You were randomly assigned the role of the seller.
+{% else %}
+You were randomly assigned the role of one of the buyers.
+You can buy up to 200 bottles of wine.<br>
+You are able to resell each bottle of wine to your customers at a price of {{player.wine_buy_price}}.
+{% endif %}
+{% next_button %}
+{% endblock %}
+
+

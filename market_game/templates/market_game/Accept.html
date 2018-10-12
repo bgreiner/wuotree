@@ -1,0 +1,20 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    Round  {{ subsession.round_number }} of {{Constants.num_rounds}}
+{% endblock %}
+
+{% block content %}
+    <p>You are person C.</p>
+
+<p>Person A has made the following offer: {% for p in group.get_players %} {% if p.role == 'A' %} {{p.offer}}{% endif %} {% endfor %}</p>
+<p>Person B has made the following offer: {% for p in group.get_players %} {% if p.role == 'B' %} {{p.offer}}{% endif %} {% endfor %}</p>
+
+{% formfield group.accepted label="Do you accept A's or B's offer, or do reject both offers?" %}
+
+
+    {% next_button %}
+{% endblock %}
+
+

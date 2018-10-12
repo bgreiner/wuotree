@@ -1,0 +1,17 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+   Round {{subsession.round_number}} out of {{Constants.num_rounds}}.
+{% endblock %}
+
+{% block content %}
+<p>
+    The first round of voting will include two strategies selected by you.
+     {% formfield player.choice_1 label="Please select a strategy." %}
+    {% formfield player.choice_2 label="Select a second strategy here." %}
+</p>
+
+    {% next_button %}
+
+{% endblock %}

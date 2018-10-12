@@ -1,0 +1,22 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+   Round {{subsession.round_number}} out of {{Constants.num_rounds}}.
+{% endblock %}
+
+{% block content %}
+<p>
+    {% if subsession.round_number == 1 %}
+    You were assigned to a group of 4 participants, each representing the mayor of a suburb.
+    {% else %}
+    You are still assigned to the same group of 4 participants, each representing the mayor of a suburb.
+    {% endif %}
+    <br>
+     {% formfield player.contribution label="Please choose how much of your E$10 transport budget you contribute to the tram line. The rest will be invested in your suburb's streets." %}
+
+</p>
+
+    {% next_button %}
+
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    Round {{ subsession.round_number }} / {{ Constants.num_rounds }}
+{% endblock %}
+
+{% block content %}
+
+    <p>Cost: {{player.cost}} E$.</p>
+    <p>Price: {{Constants.price}} E$.</p>
+    <p>Demand: discrete uniform distribution between 0 and 300.</p>
+    {% formfield player.order label="Your order quantity:" %}
+
+
+<p>{% next_button %}</p>
+
+
+{% endblock %}

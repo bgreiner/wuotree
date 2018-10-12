@@ -1,0 +1,13 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+        Round  {{ subsession.round_number }} of {{Constants.num_rounds}}
+{% endblock %}
+
+{% block content %}
+<p>Your randomly chosen payoff from all rounds in {{player.rand_payoff}}.</p>
+    {% next_button %}
+{% endblock %}
+
+

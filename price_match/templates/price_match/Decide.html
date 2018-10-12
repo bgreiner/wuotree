@@ -1,0 +1,31 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    Round {{subsession.round_number}} / {{Constants.num_rounds}}
+{% endblock %}
+
+{% block content %}
+    {% if group.price_matching_count == 1 and player.price_matching %}
+    You were the only company to choose a price matching policy. {% else %}
+    {% if group.price_matching_count != 0 %}
+        {{group.price_matching_count}}
+        {% if group.price_matching_count == 1 %}
+            company has
+        {% else %}
+            companies have
+        {% endif %}
+        chosen a "price matching policy". You
+        {% if player.price_matching %} were one of them
+        {% else %} were not one of them
+        {% endif %}.
+    {% else %} Nobody has chosen a "price matching policy".
+{% endif %}
+{% endif %}
+    {% formfield player.price label="Please choose a price for your souvenirs:" %}
+
+
+<p>{% next_button %}</p>
+
+
+{% endblock %}

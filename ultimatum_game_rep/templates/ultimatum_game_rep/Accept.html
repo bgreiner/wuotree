@@ -1,0 +1,29 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+
+        Your Role and Decision. Round  {{ subsession.round_number }} of {{Constants.num_rounds}}
+
+{% endblock %}
+
+{% block content %}
+
+    <p>
+        Person A made the following offer {{ group.amount_offered }}.
+    </p>
+
+
+    <p><b>Do you wish to accept the offer?</b></p>
+    <div>
+        <button name="offer_accepted" value="True" class="btn btn-primary btn-large">
+            Yes
+        </button>
+        <button name="offer_accepted" value="False" class="btn btn-primary btn-large">
+            No
+        </button>
+    </div>
+
+
+{% endblock %}
+

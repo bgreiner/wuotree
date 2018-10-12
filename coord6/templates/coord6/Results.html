@@ -1,0 +1,36 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    Results
+{% endblock %}
+
+{% block content %}
+<table class="table">
+<tr>
+<th>Round</th>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+<td>6</td>
+<th>Total</th>
+</tr>
+<tr>
+    <th>Payout</th>
+<td>{{round_1_payoff}}</td>
+<td>{{round_2_payoff}}</td>
+<td>{{round_3_payoff}}</td>
+<td>{{round_4_payoff}}</td>
+<td>{{round_5_payoff}}</td>
+<td>{{round_6_payoff}}</td>
+<th>{{total_payoff}}</th>
+<td>
+</tr>
+
+</table>
+    {% next_button %}
+{% endblock %}
+
+

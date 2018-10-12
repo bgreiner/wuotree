@@ -1,0 +1,29 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+Results
+{% endblock %}
+
+{% block content %}
+<p>
+    You were bidder {{player.id_in_group}}. <br>
+    Your value for your certificate was {{player.cert_price}}<br>
+    You submitted a bid of {{player.bid}}. <br>
+
+    {% if group.mult_win %}
+    There were more than one bidder who submitted a highest bid of {{group.winning_bid}} E$, of which Bidder {{group.winner}}
+    was selected. <br>
+    {% else %}
+    The highest bid of {{group.winning_bid}} E$ was submitted by Bidder {{group.winner}}.
+    {% endif %}
+    The second highest submitted bid (the highest bid among those who did not win) was {{group.second_highest}} E$.
+    {% if not group.winner == player.id_in_group %} <br>You are not the winner.
+    Thus, your payoff is {{player.payoff}}.
+    {% else %}<br>
+    You are the winner, thus payoff is {{player.cert_price}} minus {{group.second_highest}} which is {{player.payoff}}.
+    </p>
+    {% endif %}
+    {% next_button %}
+{% endblock %}
+

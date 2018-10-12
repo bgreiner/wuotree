@@ -1,0 +1,25 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block styles %}
+
+    <style type="text/css">
+        body {
+            background-color: #ffb13d;
+            color: #fff;
+        }
+    </style>
+
+{% endblock %}
+
+{% block title %}
+    Ready
+{% endblock %}
+
+{% block content %}
+<p>You are logged in as participant {{ participant_label }}.</p>
+<p>The next experiment will begin shortly.</p><br><br>
+<h4><b>DO NOT CLOSE THIS PAGE</b></h4>
+{% endblock %}
+
+

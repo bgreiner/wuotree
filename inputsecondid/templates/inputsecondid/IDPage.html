@@ -1,0 +1,16 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    Enter second ID
+{% endblock %}
+
+{% block content %}
+
+    You are logged in as participant {{ participant_label }}.
+
+    {% formfield player.player2id label="If there are two students at this device, please type in the second ID here:" %}
+
+    {% next_button %}
+
+{% endblock %}

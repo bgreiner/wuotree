@@ -1,0 +1,15 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+   Round {{subsession.round_number}} out of {{Constants.num_rounds}}.
+{% endblock %}
+
+{% block content %}
+    <p>Your choice of number was {{player.num_chosen}}.<br>
+    The minimum chosen in the group was {{group.lowest_num}}.<br>
+    Thus your payoff for this round is {{player.payoff}}.</p>
+    {% next_button %}
+{% endblock %}
+
+

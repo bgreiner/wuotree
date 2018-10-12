@@ -1,0 +1,23 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+   Round {{subsession.round_number}} out of {{Constants.num_rounds}}.
+{% endblock %}
+
+{% block content %}
+<p>
+    You have chosen a price of {{player.chosen_price}}. <br>
+    The other participant in your group has chosen a price of {{player.other_player.chosen_price}}.<br>
+
+    Thus, there is demand for {{group.winning_demand}} bolts at a price of {{group.winning_price}}.<br>
+
+    You sell {% if player.winner %}{{group.winning_demand}}{% else %}0{% endif %} bolts at a price of {{player.chosen_price}}.<br>
+    Thus, your profit in this round is {{player.payoff}}.<br>
+
+
+</p>
+    {% next_button %}
+{% endblock %}
+
+

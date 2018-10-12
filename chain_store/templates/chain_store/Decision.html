@@ -1,0 +1,14 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    Round  {{ subsession.round_number }}
+{% endblock %}
+
+{% block content %}
+
+{% formfield player.bolt_price label="What price would you like to sell your bolt?" %}
+
+    {% next_button %}
+
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    Round  {{ subsession.round_number }} of {{Constants.num_rounds}}
+{% endblock %}
+
+{% block content %}
+    <p>You are person B.</p>
+    <br>
+    Person A has chosen 'right' at the last choice node. You are now at choice node {{group.page_num|add:"1"}}.<br><br>
+    {% formfield group.cont label="Continue?" %}
+    {% next_button %}
+
+{% endblock %}

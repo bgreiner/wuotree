@@ -1,0 +1,36 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    Results
+{% endblock %}
+
+{% block content %}
+    <p>{% if player.role == 'Seller' %} In this market you were the {{player.role}}. You chose a selling price of {{group.sell_price}}.{% endif %}
+    {% if player.role != 'Seller' %} In this market you were the buyer with a resale price of {{player.wine_buy_price}}.
+        The seller chose a selling price of {{group.sell_price}}. {% endif %}</p>
+    <p>
+
+        {% for p in group.get_players %}
+            {% if p.role != 'Seller' %} The buyer with the resale price of {{p.wine_buy_price}} has ordered {{p.number_of_bottles}}.
+        <br>{% endif %}{% endfor %}
+        <br>Thus an overall demand of {{group.tot_bottles_sold}} bottles have been ordered.The seller made a profit of
+        {% for p in group.get_players %} {% if p.role == 'Seller' %} {{p.payoff}}{% endif %}{% endfor %}.
+        <br><br>
+
+
+        {% for p in group.get_players %}
+        {% if p.role != 'Seller' %}
+        The buyer with the resale price of {{p.wine_buy_price}} makes a profit of {{p.payoff}}. <br>
+        {% endif %}
+        {% endfor %}
+
+
+
+    </p>
+<strong>Your profit this round is {{player.payoff}}.
+            </strong>
+    {% next_button %}
+{% endblock %}
+
+

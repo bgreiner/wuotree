@@ -1,0 +1,16 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    Round  {{ subsession.round_number }} of {{Constants.num_rounds}}
+{% endblock %}
+
+{% block content %}
+    <p>You are person A.</p>
+    <br>
+    {% if group.page_num == 0 %} You make the first decision. {% else %}
+    Person B has chosen 'right' at the last choice node.{% endif %} You are now at choice node {{group.page_num|add:"1"}}.<br><br>
+    {% formfield group.cont label="Your choice:" %}
+    {% next_button %}
+
+{% endblock %}

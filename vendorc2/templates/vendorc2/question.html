@@ -1,0 +1,20 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+   Questionnaire
+{% endblock %}
+
+{% block content %}
+
+    {% formfield player.sex label="What is your sex?" %}<br>
+    {% formfield player.age label="How old are you?" %}<br>
+    {% formfield player.siblings label="How many siblings do you have?" %}<br>
+    {% formfield player.born_vienna label="Were you born in Vienna?" %}<br>
+
+
+
+<p>{% next_button %}</p>
+
+
+{% endblock %}

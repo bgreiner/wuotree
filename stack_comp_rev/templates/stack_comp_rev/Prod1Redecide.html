@@ -1,0 +1,16 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+{% block title %}
+    Round  {{ subsession.round_number }} of {{Constants.num_rounds}}
+{% endblock %}
+
+{% block content %}
+ <p>You have chosen to produce {{player.number_of_bottles_redecide}}</p>
+
+    <p>You now have the chance to reconsider this choice. The other producer chose {% for p in group.get_players %}
+	{% if p.role == 'Producer 2' %} {{p.number_of_bottles}} {% endif %} {%endfor%}
+        <br>
+    {% formfield player.number_of_bottles label="Choose number of bottles to sell:" %}
+
+    {% next_button %}
+{% endblock %}

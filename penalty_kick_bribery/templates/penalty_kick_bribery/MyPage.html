@@ -1,0 +1,21 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+   Round {{subsession.round_number}} out of {{Constants.num_rounds}}.
+{% endblock %}
+
+{% block content %}
+In this round, your role is the one of the {{player.role}}.<br>
+{% if player.role == 'Striker' %}
+In this round you have {% if not group.bribed %} not {% endif %} been bribed. <br>
+{% formfield player.choice label="Please select your choice of where to shoot in this round" %}
+    {% next_button %}
+{% else %}
+You are unaware whether the Striker has been bribed or not. <br>
+{% formfield player.choice label="Please select your choice of where to dive in this round" %}
+    {% next_button %}
+{% endif %}
+
+
+{% endblock %}

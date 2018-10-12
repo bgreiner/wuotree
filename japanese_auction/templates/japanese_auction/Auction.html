@@ -1,0 +1,19 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    Auction Page
+{% endblock %}
+
+{% block content %}
+    You are bidder number {{player.id_in_group}}.<br><br>
+Your certificate value is {{player.cert_price}}.<br><br>
+
+<h2><b>Current price: {{group.current_price}} E$.</b></h2><br><br>
+To drop out of the current auction click the Drop Out button.<br>
+ <div>
+        <button name="drop_out" value="True" class="btn btn-primary btn-large">Drop Out</button>
+
+
+
+{% endblock %}

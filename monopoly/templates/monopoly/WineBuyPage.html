@@ -1,0 +1,22 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+      Round  {{ subsession.round_number }} of {{Constants.num_rounds}}
+{% endblock %}
+
+{% block content %}
+    {% for p in group.get_players %}
+    {% if p.role == 'Seller' %}
+    <p>The seller has offered a price of {{p.wine_sell_price}}.</p>
+    {%endif%}
+    {%endfor%}
+    <br>
+
+    <p>You can resell each bottle of purchased wine to your customers at a price of {{player.wine_buy_price}}.</p>
+
+    {% formfield player.number_of_bottles label="Please choose the quantity of bottles which you want to order from the seller." %}
+
+<p>{% next_button %}</p>
+
+{% endblock %}

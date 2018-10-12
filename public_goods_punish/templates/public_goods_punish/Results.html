@@ -1,0 +1,35 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    Results
+{% endblock %}
+
+{% block content %}
+<p1>In this round you are mayor number {{player.id_in_group}}.</p1> <br><br>
+{% for p in group.get_players %}
+{% if p.id_in_group == player.id_in_group %} You have {% else %}Mayor number {{p.id_in_group}} has {% endif %}
+contributed {{p.contribution}} to the tram line and {{p.kept}} to making
+{% if p.id_in_group == player.id_in_group %}your {% else %} their {% endif%}own streets.<br>
+{% endfor %}
+
+<br>
+<p1>Overall, the 4 suburbs have contributed {{group.total_contribution}} to the tram line.<br>
+{% if player.id_in_group != 1 %}You have spent {{player.punishment_1}} on the destruction of mayor 1's benefit.<br>{% endif %}
+{% if player.id_in_group != 2 %}You have spent {{player.punishment_2}} on the destruction of mayor 2's benefit.<br>{% endif %}
+{% if player.id_in_group != 3 %}You have spent {{player.punishment_3}} on the destruction of mayor 3's benefit.<br>{% endif %}
+{% if player.id_in_group != 4 %}You have spent {{player.punishment_4}} on the destruction of mayor 4's benefit.<br>{% endif %}
+<br>
+In sum you spent {{player.tot_punish}} on destruction of other mayor's benefit.<br>
+    Other mayors spent
+    {% if player.id_in_group == 1 %}{{group.punishment_p_1}}{% endif %}
+    {% if player.id_in_group == 2 %}{{group.punishment_p_2}}{% endif %}
+    {% if player.id_in_group == 3 %}{{group.punishment_p_3}}{% endif %}
+    {% if player.id_in_group == 4 %}{{group.punishment_p_4}}{% endif %}
+    on destruction of your benefits.<br>
+Thus, your suburb's eventual benefits in this round are {{player.payoff}}.
+<br><br>
+    {% next_button %}
+{% endblock %}
+
+

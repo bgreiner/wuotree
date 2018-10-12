@@ -1,0 +1,18 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    Round  {{ subsession.round_number }} of {{Constants.num_rounds}}.
+{% endblock %}
+
+{% block content %}
+<p>You have chosen a price of {{player.bolt_price}} E$.</p>
+<p>The other participant in your group has chosen a price of {{ player.other_player.bolt_price }} E$</p>
+<p>Thus there is demand for{% if min_price == 0.08 %} 800 {% else %} 500{% endif %} bolts at price {{min_price}} E$.</p>
+<p>You sell {% if player.payoff == 0 %} no{% elif player.payoff == 12 %} 400{% elif player.payoff == 17.5 %} 250
+    {% else %} 800{% endif %} bolts this rounds.</p>
+<p>Thus your profit for this round is <strong>{{player.payoff}}.</strong></p>
+{% next_button %}
+{% endblock %}
+
+

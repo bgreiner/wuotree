@@ -1,0 +1,18 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    Round {{subsession.round_number}} / {{Constants.num_rounds}}
+{% endblock %}
+
+{% block content %}
+    <p>{% if subsession.round_number == 1 %} You were assigned to a group of 5 participants, each representing a souvenir company.
+        {% else %} The groups were randomly rematched. You were assigned to a new group of 5 participants, each representing a souvenir company.</p>
+        {% endif %}
+    {% formfield player.price_matching label="Would you like to offer a price matching policy?" %}
+
+
+<p>{% next_button %}</p>
+
+
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+        Round  {{ subsession.round_number }} of {{num_rounds}}
+{% endblock %}
+
+{% block content %}
+<p>You were randomly assigned the role of <strong>{{player.role}}.</strong></p>
+<p>
+{% if player.role == 'Entrant' %} You will make entry decisions in {{num_rounds}} industries, each having a different incumbent.
+{% else %} You will face {{num_rounds}} potential entrants, one by one.
+{% endif %}</p>
+    {% next_button %}
+{% endblock %}
+

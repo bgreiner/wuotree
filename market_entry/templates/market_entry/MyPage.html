@@ -1,0 +1,14 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+   Round {{subsession.round_number}} out of {{Constants.num_rounds}}.
+{% endblock %}
+
+{% block content %}
+In this round, you are player {{player.role}}.<br>
+
+{% formfield player.choice label="Please choose whether to enter the market" %}
+    {% next_button %}
+
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    Round {{subsession.round_number}} out of {{Constants.num_rounds}}.
+{% endblock %}
+
+{% block content %}
+    You chose to {{player.choice}}, and the other participant chose to {{player.other_player.choice}}.<br>
+    Thus your payoff this round in {{player.payoff}}.
+    {% next_button %}
+{% endblock %}
+
+

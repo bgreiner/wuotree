@@ -1,0 +1,15 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+    Round {{ subsession.round_number }} / {{ Constants.num_rounds }}
+{% endblock %}
+
+{% block content %}
+
+<p>You have chosen to order {{player.order}} units with a cost of {{player.cost}} E$.</p>
+<p>You were randomly assigned a demand of {{player.demand}}.</p>
+<p>This gives you a profit of {{player.payoff}}.</p>
+<p>{% next_button %}</p>
+
+{% endblock %}

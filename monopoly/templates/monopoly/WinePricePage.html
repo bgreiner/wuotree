@@ -1,0 +1,14 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+      Round  {{ subsession.round_number }} of {{Constants.num_rounds}}
+{% endblock %}
+
+{% block content %}
+
+    {% formfield player.wine_sell_price label="Please choose a price per bottle of your wine:" %}
+
+<p>{% next_button %}</p>
+
+{% endblock %}

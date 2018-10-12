@@ -1,0 +1,20 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    Round  {{ subsession.round_number }} of {{Constants.num_rounds}}
+{% endblock %}
+
+{% block content %}
+    <p>You are person {{player.role}}.</p>
+    <p>You and person {% if player.role == 'A' %}B{% else %}A{% endif %} have to make an offer of how much of the
+        10 E$ you give to person C (between 0.01 and 8 E$).</p>
+    <p>Person C will then decide whether she/he accepts your offer, the offer of person
+        {% if player.role == 'A' %}B{% else %}A{% endif %}, or rejects both.</p>
+
+{% formfield player.offer label="How much of the 10 E$ would you like to give to person C?" %}
+
+    {% next_button %}
+{% endblock %}
+
+

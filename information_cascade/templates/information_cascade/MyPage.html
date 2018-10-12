@@ -1,0 +1,48 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+Information Cascade
+{% endblock %}
+
+{% block content %}
+    <style>
+.hint {
+        color:{{player.hint}};
+        text-shadow:
+       -1px -1px 0 #000,
+        1px -1px 0 #000,
+        -1px 1px 0 #000,
+         1px 1px 0 #000;
+        font-size: 150%;
+}
+</style>
+<p>You are randomly assigned to decide as number {{player.id_in_group}}.<br>
+    Now it is your turn to decide.<br>
+    The ball randomly drawn by the computer for you is <b class="hint">{{player.hint}}</b>
+.<br>
+    The probability that this "hint" is correct is 60%.
+</p>
+ {% formfield player.guess label="Please make your choice" %}
+{% if other_players %}
+    <h4>Choice history of other players</h4>
+    <table class="table">
+        <tr>
+            <th>Player</th>
+            <th>Choice</th>
+        </tr>
+        {% for key, values in other_players.items %}
+            <tr>
+                <td>{{ key }}</td>
+                <td>
+                    {{ values }}
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+{% else %}
+As you are to decide first, there is no history to display.
+{% endif %}
+    {% next_button %}
+
+{% endblock %}

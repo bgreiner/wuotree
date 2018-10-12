@@ -1,0 +1,22 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    Round {{ subsession.round_number }} / {{ Constants.num_rounds }} - Decide
+{% endblock %}
+
+{% block content %}
+
+    {% if subsession.round_number == 1 %}
+        <p>You were assigned to a group of 5 participants, each representing a souvenir company.</p>
+    {% else %}
+        <p>The groups were randomly rematched. You were assigned to a new group of 5 participants, each representing a souvenir company.</p>
+    {% endif %}
+
+    {% formfield player.price label="Please choose a price for your souvenirs:" %}
+
+
+<p>{% next_button %}</p>
+
+
+{% endblock %}

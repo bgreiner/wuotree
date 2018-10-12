@@ -1,0 +1,26 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    Round  {{ subsession.round_number }} of {{Constants.num_rounds}}
+{% endblock %}
+
+{% block content %}
+    <p>
+                Person A made the following offer: {{group.amount_offered}}
+<br>
+        Person A receives: {% for p in group.get_players %} {% if p.id_in_group == 1 %}{{p.payoff}} {% endif %} {% endfor %} <br>
+        Person B receives: {% for p in group.get_players %} {% if p.id_in_group == 2 %}{{p.payoff}} {% endif %} {% endfor %}
+
+        <br><br>
+        {% if player.id_in_group == 1 %}
+            Person B
+        {% else %}You {% endif %}
+        {% if group.offer_accepted %} accepted {% else %}
+         rejected{% endif %} this offer.<br><br>
+
+        Thus, your income for this round is <strong>{{player.payoff}}</strong>.
+
+        {% next_button %}
+    </p>
+{% endblock %}

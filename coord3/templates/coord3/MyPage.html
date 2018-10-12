@@ -1,0 +1,18 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    You are randomly assigned to a new other participant.
+{% endblock %}
+
+{% block content %}
+   <h3>Instructions:</h3> <h2>There are E$ 100 to be divided.</h2> <br>
+<p>You have to state how much of this amount you request (an integer number).<br>
+The other participant will do so too.<br>
+If the sum of both requests is smaller than or equal to the E$100, each of you will receive his request.<br>
+If the sum of both requests is larger than E$ 100, both participants will receive nothing, i.e. E$ 0.</p>
+ {% formfield player.split label="Please enter your request:" %}
+
+    {% next_button %}
+
+{% endblock %}

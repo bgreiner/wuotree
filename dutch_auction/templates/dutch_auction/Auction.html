@@ -1,0 +1,19 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    Auction Page
+{% endblock %}
+
+{% block content %}
+    You are bidder number {{player.id_in_group}}.<br><br>
+Your certificate value is {{player.cert_price}}.<br><br>
+
+<h2><b>Current price: E${{group.current_price}}.</b></h2><br><br>
+To buy at the the current price click the Accept Price button.<br>
+ <div>
+        <button name="drop_out" value="True" class="btn btn-primary btn-large">Accept Price</button>
+
+
+
+{% endblock %}

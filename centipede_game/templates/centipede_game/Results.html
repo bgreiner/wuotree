@@ -1,0 +1,19 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+        Round  {{ subsession.round_number }} of {{Constants.num_rounds}}
+{% endblock %}
+
+{% block content %}
+{% if group.page_num > 9 %} Both players have chosen 'right' at every choice node.
+{% elif group.page_num|divisibleby:"2" %} Person A has chosen down at choice node {{group.page_num|add:"1"}}.
+{% else %} Person B has chosen down at choice node {{group.page_num|add:"1"}}.{% endif %}<br><br>
+<p>Thus, {% for p in group.get_players %}
+    {% if p.id_in_group == 1 %}{% if player.id_in_group == 1 %}<strong>your</strong> {% else %}Person A's {% endif %}payoff is {{p.payoff}}
+    {% else %} and {% if player.id_in_group == 2 %}<strong>your</strong> {% else %}Person B's {% endif %}payoff is {{p.payoff}}.
+    {% endif %}{% endfor %}</p>
+    {% next_button %}
+{% endblock %}
+
+

@@ -1,0 +1,20 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+   What quantity should you order, if you wanted to maximize profits?
+{% endblock %}
+
+{% block content %}
+
+
+    <p>Cost: {{player.cost_2}} E$.</p>
+    <p>Price: 12 E$.</p>
+    <p>Demand: discrete uniform distribution between 0 and 300.</p>
+    {% formfield player.optimal_2 label="What is the profit maximizing order quantity under these conditions? Take a piece of paper and a pen and try to work it out.:" %}
+
+
+<p>{% next_button %}</p>
+
+
+{% endblock %}

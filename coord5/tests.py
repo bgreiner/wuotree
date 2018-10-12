@@ -1,0 +1,15 @@
+from otree.api import Currency as c, currency_range
+from . import pages
+from ._builtin import Bot
+from .models import Constants
+
+
+class PlayerBot(Bot):
+
+    def play_round(self):
+        if self.player.id_in_group == 1:
+            yield (pages.MyPage, {'number': 14})
+            print(self.player.payoff)
+        else:
+            yield (pages.MyPage, {'number': 15})
+            print(self.player.payoff)

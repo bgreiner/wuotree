@@ -1,0 +1,16 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+   Round {{subsession.round_number}} out of {{Constants.num_rounds}}.
+{% endblock %}
+
+{% block content %}
+<p>In this round you were the {{player.role}}, the other participant was the {{player.other_player.role}}.<br>
+    You chose to go to the {{player.choice}}, the other participant chose to go to the {{player.other_player.choice}}.<br>
+    {% if player.role == 'Strike' %}You{% else %}The Striker{% endif %} was {% if not group.bribed %} not {% endif %} bribed.
+Thus, your payoff in this round is {{player.payoff}}</p>
+    {% next_button %}
+{% endblock %}
+
+

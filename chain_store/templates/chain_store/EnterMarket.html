@@ -1,0 +1,42 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+        Round  {{ subsession.round_number }}
+{% endblock %}
+
+{% block content %}
+<p>You are the {{ordinal}} entrant to meet this incumbent chain store.</p>
+{% formfield player.enter label="Enter the market?" %}
+    {% next_button %}
+{% if subsession.round_number != 1 %}
+<h7>Here you see the entry decisions of the potential entrants before you,
+    and the corresponding fight/not fight decisions of this incumbent chain store.</h7>
+
+
+<table class="table">
+<tr>
+<th>Round</th>
+<th>Entrant's choice</th>
+    <th>Incumbent's choice</th>
+</tr>
+<tr>{% for p in player.other_player.in_previous_rounds %}
+<td>{{ p.round_number }}</td>
+<td>
+
+{% if p.other_player.enter == "Enter the market" %}Entered the market{% else %}Did not enter the market{% endif %}
+</td>
+<td>
+    {% if p.price_war and p.other_player.enter == "Enter the market" %}
+Price war{% elif not p.price_war and p.other_player.enter == "Enter the market" %}No price war
+{% else %}Other player did not enter the market{% endif %}
+</td>
+</tr>
+{% endfor %}
+</table>
+{% else %}
+<h7>No past actions to show.</h7>
+{% endif %}
+{% endblock %}
+
+

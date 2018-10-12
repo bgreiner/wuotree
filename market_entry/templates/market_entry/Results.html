@@ -1,0 +1,15 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+   Round {{subsession.round_number}} out of {{Constants.num_rounds}}.
+{% endblock %}
+
+{% block content %}
+<p>In this round you were player {{player.role}}, the other participant was player {{player.other_player.role}}.<br>
+    You chose {% if player.choice != "Enter The Market" %}not {% endif %}to enter the market and the other participant chose {% if player.other_player.choice != "Enter The Market" %}not {% endif %}to enter the market.<br>
+Thus, your payoff in this round is {{player.payoff}}</p>
+    {% next_button %}
+{% endblock %}
+
+

@@ -1,0 +1,19 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    Results
+{% endblock %}
+
+{% block content %}
+<p>You were Bidder {{player.id_in_group}}.  <br>
+ Your value for the certificate was {{player.cert_price}}. <br>
+    {% if player.winner %} You won the auction with a bid of {{player.bid}}. <br>
+    Thus, your  payoff in this experiment is {{player.cert_price}} minus {{player.bid}}. Which is {{player.payoff}}.
+    {% else %}
+    You did not win the auction. The highest bidder made a bid of {{group.highest_bid}}. Your payoff in this experiment is E$0.
+    {% endif %}
+  </p>  {% next_button %}
+{% endblock %}
+
+

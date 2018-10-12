@@ -1,0 +1,48 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    Round {{subsession.round_number}} out of {{Constants.num_rounds}}.
+{% endblock %}
+
+{% block content %}
+<p>
+    In this round you were the {{player.role}}.<br>
+
+    {% if player.role == 'Employee' %}
+
+    Your skill level was {{player.skill_level}} and you decided {% if player.master == 'No' %} not {% endif %}to
+    do a Master's degree. <br>
+    The firm chose to offer the wage of {{player.other_player.wage_offered}} E$. <br>
+    Thus, your income this round is equal to the wage E${{player.other_player.wage_offered}} minus the education costs
+    of 
+    {% if player.master == 'No' %}0
+    {% else %}
+    {% if player.skill_level == 'High' %}10{% endif %}
+    {% if player.skill_level == 'Low' %}25{% endif %}
+    {% endif %} E$ = {{player.payoff}}. <br>
+    The firm's income in this round is {% if player.skill_level == 'High' %} 40 E$	+	2*Wage	– Wage
+    {% else %} 40 E$ – Wage
+    {% endif %} = {{player.other_player.payoff}}.
+    {% else %}
+    The employee's skill level was {{player.other_player.skill_level}} and they decided {% if player.other_player.master == 'No'  %} not {% endif %}to
+    do a Master's degree. <br>
+    You chose to offer the wage of {{player.wage_offered}} E$. <br>
+    Thus, the employee's income this round is equal to the wage {{player.wage_offered}} E$ minus the education costs
+    of 
+    {% if player.other_player.master == 'No' %}0
+    {% else %}
+    {% if player.other_player.skill_level == 'High' %}10{% endif %}
+    {% if player.other_player.skill_level == 'Low' %}25{% endif %}
+    {% endif %} E$ = {{player.other_player.payoff}}.<br>
+    Your income in this round is
+    {% if player.other_player.skill_level == 'High' %} 40 E$ 	+	2*Wage	– Wage
+    {% else %} 40 E$ – Wage
+    {% endif %} = {{player.payoff}}.
+    {% endif %}
+
+</p>
+    {% next_button %}
+{% endblock %}
+
+

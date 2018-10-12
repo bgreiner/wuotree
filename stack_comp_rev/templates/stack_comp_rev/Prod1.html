@@ -1,0 +1,12 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+{% block title %}
+    Round  {{ subsession.round_number }} of {{Constants.num_rounds}}
+{% endblock %}
+
+{% block content %}
+    <P>You are the producer who decides first. The other producer will be informed about your choice and then decides about his number of bottles.</P>
+    {% formfield player.number_of_bottles_redecide label="Please choose the number of bottles you want to produce:" %}
+
+    {% next_button %}
+{% endblock %}

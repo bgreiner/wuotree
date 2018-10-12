@@ -1,0 +1,15 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+   Round {{subsession.round_number}} out of {{Constants.num_rounds}}.
+{% endblock %}
+
+{% block content %}
+<p>You are randomly assigned to a new other participant.<br>
+    In this round, your role is the one of the {{player.role}}.<br>
+    As a Hermit you can send a note to the Socialiser before both of you make decisions.<br>
+{% formfield player.stated_choice label="Please select which message to send to the socialiser" %}
+    {% next_button %}
+
+{% endblock %}

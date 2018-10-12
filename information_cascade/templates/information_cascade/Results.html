@@ -1,0 +1,21 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    Results
+{% endblock %}
+
+{% block content %}
+    <p>
+        In this round {{yellow_count}} {% if yellow_count > 1 %}people{% else %}person{% endif %} chose Yellow and {{blue_count}} 
+{% if blue_count > 1 %}people{% else %}person{% endif %} chose Blue.<br>
+        You chose {{player.guess}}. <br>
+
+        The <b>true</b> colour of the urn was {{group.urn_colour}}. <br>
+
+        Thus your income this round was {{player.payoff}}.
+    </p>
+    {% next_button %}
+{% endblock %}
+
+
