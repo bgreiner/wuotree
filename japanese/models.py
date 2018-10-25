@@ -51,7 +51,7 @@ class Player(BasePlayer):
     def set_cert(self):
         self.cert_price = random.randrange(10, 50, 1)
     def set_payoff(self):
-        self.payoff = ((self.cert_price - self.group.price) * (self.drop_out)) * (not self.group.timeout)
+        self.payoff = ((self.cert_price - self.group.price) * (not self.drop_out))
 
 
 class Group(BaseGroup):
