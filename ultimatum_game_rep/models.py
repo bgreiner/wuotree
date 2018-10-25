@@ -17,9 +17,6 @@ class Constants(BaseConstants):
     endowment = c(10)
 
 class Subsession(BaseSubsession):
-    def creating_session(self):
-        if self.round_number == 1:
-            self.group_randomly()
     pass
 
 class Group(BaseGroup):

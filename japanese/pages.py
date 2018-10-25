@@ -4,7 +4,6 @@ from ._builtin import Page, WaitPage
 from .models import Constants
 import json
 import channels
-from .finish_auction import advance_participants
 
 
 
@@ -28,10 +27,9 @@ class Decision(Page):
             for p in self.group.get_players():
                 finished += p.drop_out
             if finished == 3:
-                advance_participants([p.participant for p in self.player.get_others_in_group()])
-        else:
-            self.group.activated = False
-            self.player.auction_winner = True
+                self.group.advance_participants()
+                self.group.activated = False
+
 
 
 class ResultsWaitPage(WaitPage):

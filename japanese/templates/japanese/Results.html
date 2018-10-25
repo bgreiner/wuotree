@@ -8,7 +8,7 @@
 {% block content %}
 You are bidder number {{player.id_in_group}}.<br><br>
 Your certificate value is {{player.cert_price}}.<br><br>
-{% if not player.auction_winner %} You are not the winner.
+{% if not player.drop_out %} You are not the winner.
     Thus, your payoff is {{player.payoff}}.
     {% else %}
     You are the winner, thus your payoff is {{player.cert_price}} minus {{group.price}} which is {{player.payoff}}.

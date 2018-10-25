@@ -1,5 +1,5 @@
 {% extends "global/Page.html" %}
-{% load staticfiles otree %}
+{% load staticfiles otree_tags%}
 
 {% block title %}
     Auction Page
@@ -11,9 +11,11 @@
   <div class="col-xs-12" style="height:10px;"></div>
     <h3>Your certificate price: <span class="label label-success" id='cert_price'>{{player.cert_price}}</span></h3>
   <div class="col-xs-12" style="height:10px;"></div>
-  <p><button name="auction_winner" value="True" class="btn btn-primary btn-lg btn-danger">Pay the price</button></p>
+          <p>
+            <input type="hidden" id="id_auction_winner" name="auction_winner" value="True" >
+            <button   class="btn btn-primary btn-lg btn-danger">Pay the price</button>
+        </p>
 </div>
-
 
 
 
@@ -25,8 +27,46 @@
 
 
       {% block scripts %}
-      {% include 'japanese/decision_channel.js.html' %}
-        <script>
+      <script>
+    window.onload = function () {
 
-        </script>
+        var ws_scheme = window.location.protocol == "https:" ? "wss" : "ws";
+        var wpsocket = new WebSocket(ws_scheme + '://' + window.location.host + "/price_increase_dutch/{{player.pk}}/{{ group.pk }}/{{subsession.pk}}");
+
+        // Handle any errors that occur.
+        wpsocket.onerror = function (error) {
+            console.log('WebSocket Error: ' + error);
+        };
+
+        // Show a connected message when the WebSocket is opened.
+        wpsocket.onopen = function (event) {
+
+            console.log('connected to oTree dutch');
+        };
+
+
+        // Handle messages sent by the server.
+        wpsocket.onmessage = function (event) {
+            var obj = jQuery.parseJSON(event.data);
+            if (obj.session=='{{session.code}}')
+            {
+                if (obj.accept) {
+                    $('input#id_auction_winner').attr("value", 'False');
+                    $('form').submit();
+                }
+                else {
+                    $('#group_price').html(obj.price);
+                }
+            }
+        };
+
+
+        // Show a disconnected message when the WebSocket is closed.
+        wpsocket.onclose = function (event) {
+            console.log('disconnected from oTree');
+        };
+    };
+
+</script>
+
       {% endblock %}
