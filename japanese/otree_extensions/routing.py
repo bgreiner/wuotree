@@ -1,7 +1,9 @@
-from channels.routing import route_class
-from .consumers import PriceTracker
+from django.conf.urls import url
+from ..consumers import AuctionRoom
+from otree.channels.routing import websocket_routes
 
-channel_routing = [
-    route_class(PriceTracker, path=PriceTracker.url_pattern),
 
+websocket_routes += [
+    url(r'^japanese/(?P<params>[\w,]+)/$',
+        AuctionRoom),
 ]

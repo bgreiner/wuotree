@@ -6,68 +6,57 @@
 {% endblock %}
 
 {% block content %}
-<div class="jumbotron">
-  <h3>Current price: <span class="label label-success" id='group_price'>{{group.price}}</span></h3>
-  <div class="col-xs-12" style="height:10px;"></div>
-    <h3>Your certificate price: <span class="label label-success" id='cert_price'>{{player.cert_price}}</span></h3>
-  <div class="col-xs-12" style="height:10px;"></div>
-          <p>
-            <input type="hidden" id="drop_out" name="drop_out" value="True" >
-            <button   class="btn btn-primary btn-lg btn-danger">Drop Out</button>
+    <div class="jumbotron">
+        <h3>Current price: <span class="label label-success" id='group_price'>{{ group.price }}</span></h3>
+        <div class="col-xs-12" style="height:10px;"></div>
+        <h3>Your certificate price: <span class="label label-success" id='cert_price'>{{ player.cert_price }}</span>
+        </h3>
+        <div class="col-xs-12" style="height:10px;"></div>
+        <p>
+            <input type="hidden" id="drop_out" name="drop_out" value="True">
+            <button class="btn btn-primary btn-lg btn-danger">Drop Out</button>
         </p>
-</div>
+    </div>
 
 
 
-</div>
+    </div>
 
 
 
 {% endblock %}
 
 
-      {% block scripts %}
-      <script>
-    window.onload = function () {
-
-        var ws_scheme = window.location.protocol == "https:" ? "wss" : "ws";
-        var wpsocket = new WebSocket(ws_scheme + '://' + window.location.host + "/price_increase_japan/{{player.pk}}/{{ group.pk }}/{{subsession.pk}}");
-
-        // Handle any errors that occur.
-        wpsocket.onerror = function (error) {
-            console.log('WebSocket Error: ' + error);
+{% block scripts %}
+    <script>
+        // WEBSOCKET CODE
+        // set up the path for the websocket
+        const ws_scheme = window.location.protocol === "https:" ? "wss" : "ws";
+        const ws_path = ws_scheme + '://' + window.location.host + "/japanese/{{ player.group_id }},{{ player.session.code }}/";
+        const socket = new ReconnectingWebSocket(ws_path);
+        // define what to do when the socket receives messages, opens, closes
+        socket.onmessage = function (e) {
+            handleMessage(e)
+        };
+        socket.onopen = function () {
+            console.log('WebSocket connected');
+        };
+        socket.onclose = function () {
+            console.log('WebSocket disconnected');
         };
 
-        // Show a connected message when the WebSocket is opened.
-        wpsocket.onopen = function (event) {
-
-            console.log('connected to oTree japan');
-        };
-
-
-        // Handle messages sent by the server.
-        wpsocket.onmessage = function (event) {
-            var obj = jQuery.parseJSON(event.data);
-            if (obj.session=='{{session.code}}')
-            {
-                if (obj.accept) {
-                    $('input#drop_out').attr("value", 'False');
-                    $('form').submit();
-                }
-                else {
-                    $('#group_price').html(obj.price);
-                }
+        // handle incoming messages - we parse the data and if it's the server saying we're done, move on to the next
+        function handleMessage(e) {
+            let data = JSON.parse(e.data);
+            if (data.advance === true) {
+                $('input#drop_out').attr("value", 'False');
+                $('form').submit()
+            } else {
+                $('#group_price').html(data.message)
             }
-        };
 
+        }
+    </script>
 
-        // Show a disconnected message when the WebSocket is closed.
-        wpsocket.onclose = function (event) {
-            console.log('disconnected from oTree');
-        };
-    };
-
-</script>
-
-      {% endblock %}
+{% endblock %}
 
